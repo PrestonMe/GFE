@@ -1,25 +1,21 @@
-require('babel-register')
-const express = require('express')
-const React = require('react')
-const ReactDOMServer = require('react-dom/server')
-const cors = require('cors')
-const request = require('request')
-
-const ReactRouter = require('react-router')
-const ServerRouter = ReactRouter.ServerRouter
-const _ = require('lodash')
-const port = process.env.PORT || 3000
-
-const fs = require('fs')
-const baseTemplate = fs.readFileSync('./index.html')
-const template = _.template(baseTemplate)
-const App = require('./app/components/app').default
-
-const app = express()
+require('babel-register');
+const express = require('express');
+const request = require('request');
+const cors = require('cors');
+const app = express();
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
+const ReactRouter = require('react-router');
+const ServerRouter = ReactRouter.ServerRouter;
+const _ = require('lodash');
+const port = process.env.PORT || 3000;
+const fs = require('fs');
+const baseTemplate = fs.readFileSync('./index.html');
+const template = _.template(baseTemplate);
+const App = require('./app/components/app').default;
 
 app.use(cors());
-
-app.use('/public', express.static('./public'))
+app.use('/public', express.static('./public'));
 
 app.get('/representatives/:state',
   findRepresentativesByState,
@@ -32,7 +28,6 @@ app.get('/senators/:state',
 );
 
 function findRepresentativesByState(req, res, next) {
-  console.log('searching')
   const url = `http://whoismyrepresentative.com/getall_reps_bystate.php?state=${req.params.state}&output=json`;
   request(url, handleApiResponse(res, next));
 }
@@ -72,8 +67,11 @@ app.use((req, res) => {
   )
   res.write(template({body: body}))
   res.end()
-})
+});
 
-app.listen(port, function() {
-  console.log(`app listening on port ${port}`)
-})
+const server = app.listen(port, () => {
+  const host = server.address().address,
+    port = server.address().port;
+
+  console.log('API listening at http://%s:%s', host, port);
+});

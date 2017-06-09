@@ -11,7 +11,7 @@ class RepSelect extends Component {
 
     updateRep(e) {
       this.setState({rep: e.target.value}, function() {
-        this.props.update(e)
+        this.props.update(e);
       })
     }
 

@@ -28,7 +28,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('server')
+      'process.env.NODE_ENV': JSON.stringify('index')
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress:{
@@ -38,8 +38,6 @@ module.exports = {
   ],
   module: {
     rules: [
-      {test: /\.css$/, use: ['style-loader', {loader: 'css-loader',
-      options: {url: false}}]},
       {test: /\.js$/, loader: 'babel-loader'},
       {test: /\.scss$/, use: ExtractTextPlugin.extract({
         fallback: "style-loader",

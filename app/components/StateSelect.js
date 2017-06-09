@@ -11,7 +11,7 @@ class StateSelect extends Component {
 
   updateState(e) {
     this.setState({state: e.target.value}, function() {
-      this.props.update(e)
+      this.props.update(e);
     })
   }
 

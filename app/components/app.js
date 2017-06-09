@@ -39,14 +39,14 @@ class App extends Component {
 
     if(obj.state && obj.rep) {
       axios.get(`/${obj.rep === 'rep' ? 'representatives' : 'senators'}/${obj.state}`).then(res => {
-        this.setState({repList: res.data.results, selectedRep: null})
+        this.setState({repList: res.data.results, selectedRep: null});
       })
     }
 
   }
 
   showRepDetails(rep) {
-    this.setState({selectedRep: rep})
+    this.setState({selectedRep: rep});
   }
 
   render() {
