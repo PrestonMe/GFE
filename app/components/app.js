@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import RepList from './components/RepList';
-import RepDetails from './components/RepDetails';
-import RepSelect from './components/RepSelect';
-import StateSelect from './components/StateSelect'
+import RepList from './RepList';
+import RepDetails from './RepDetails';
+import RepSelect from './RepSelect';
+import StateSelect from './StateSelect';
 
 class App extends Component {
   constructor(props) {
@@ -12,7 +12,8 @@ class App extends Component {
       state: '',
       rep: '',
       repList: [],
-      selectedRep: null
+      selectedRep: null,
+      submitReady: false
     }
     this.updateInput = this.updateInput.bind(this);
     this.getReps = this.getReps.bind(this);
@@ -22,16 +23,26 @@ class App extends Component {
   updateInput(e) {
     let obj = this.state;
     obj[e.target.name] = e.target.value;
-    this.setState(obj);
+
+    this.setState(obj, function() {
+      if(obj.submitReady === false) {
+        if(this.state.state && this.state.rep) {
+          this.setState({submitReady: true});
+        }
+      }
+    });
+
   }
 
   getReps(e) {
     let obj = this.state;
+
     if(obj.state && obj.rep) {
       axios.get(`/${obj.rep === 'rep' ? 'representatives' : 'senators'}/${obj.state}`).then(res => {
         this.setState({repList: res.data.results, selectedRep: null})
       })
     }
+
   }
 
   showRepDetails(rep) {
@@ -46,9 +57,9 @@ class App extends Component {
         <div className='options-bar'>
           <RepSelect update={this.updateInput} />
           <StateSelect update={this.updateInput} />
-          <button onClick={this.getReps}>Submit</button>
+          <button disabled={!this.state.submitReady} onClick={this.getReps}>Submit</button>
         </div>
-        
+
         <div className='reps'>
           <RepList people={this.state.repList} selectedRep={this.showRepDetails} />
           <RepDetails rep={this.state.selectedRep} />

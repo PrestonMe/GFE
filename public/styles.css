@@ -1,5 +1,26 @@
+p {
+  font-family: 'Rubik', sans-serif; }
+
+select {
+  padding: 3px;
+  margin-right: 10px;
+  font-family: 'Rubik', sans-serif; }
+
+button {
+  padding: 3px;
+  font-family: 'Rubik', sans-serif; }
+
+a {
+  text-decoration: none;
+  color: #35B1EF; }
+
+a:hover {
+  color: #0e3d54; }
+
 .main {
-  margin: 20px; }
+  margin: 20px auto;
+  max-width: 1300px;
+  padding: 0 20px; }
 
 .options-bar {
   padding-top: 10px; }
@@ -7,9 +28,47 @@
 .header {
   color: #35B1EF;
   font-size: 25px;
-  font-family: 'Rubik', sans-serif;
   padding-bottom: 30px;
   border-bottom: 1px solid #EEE; }
 
 .reps {
-  display: flex; }
+  display: flex;
+  justify-content: space-between; }
+  .reps .reps-list {
+    width: 48%; }
+    .reps .reps-list ul {
+      height: 365px;
+      overflow-y: auto; }
+    .reps .reps-list li:hover {
+      background-color: #A9A9A9; }
+    .reps .reps-list .list-title {
+      font-size: 25px;
+      margin: 10px 0; }
+      .reps .reps-list .list-title span {
+        color: #35B1EF; }
+    .reps .reps-list .name-party {
+      background-color: #F8F8F9;
+      font-size: 18px;
+      display: flex;
+      padding: 15px 10px; }
+      .reps .reps-list .name-party p:nth-child(1) {
+        width: 80%; }
+      .reps .reps-list .name-party p:nth-child(2) {
+        width: 20%; }
+    .reps .reps-list .list-names {
+      background-color: #FFF;
+      border-bottom: 1px solid #EEE; }
+    .reps .reps-list .list-names:hover {
+      cursor: pointer; }
+  .reps .rep-details {
+    width: 48%; }
+    .reps .rep-details .details-title {
+      font-size: 25px;
+      margin: 10px 0; }
+    .reps .rep-details li {
+      background-color: #F8F8F9;
+      font-size: 18px;
+      padding: 15px 10px;
+      border-radius: 5px;
+      margin-bottom: 25px;
+      font-family: 'Rubik', sans-serif; }

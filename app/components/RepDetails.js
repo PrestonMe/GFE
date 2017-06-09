@@ -13,18 +13,20 @@ class RepDetails extends Component {
   }
 
   render() {
+    let politician = this.state.politician;
+
     return (
-      <div>
+      <div className='rep-details'>
+        <p className='details-title'>Info</p>
         {this.state.politician
-        ? <ul>
-          <li>{this.state.politician.name.split(' ')[0]}</li>
-          <li>{this.state.politician.name.split(' ')[1]}</li>
-          <li>{this.state.politician.district}</li>
-          <li>{this.state.politician.phone}</li>
-          <li>{this.state.politician.office}</li>
-          <li>{this.state.politician.link}</li>
+        && <ul>
+          <li>First Name: {politician.name.split(' ')[0]}</li>
+          <li>Last Name: {politician.name.split(' ')[1]}</li>
+          <li>District: {politician.district ? politician.district : 'N/A'}</li>
+          <li>Phone: {politician.phone}</li>
+          <li>Address: {politician.office}</li>
+          <li><a href={politician.link}>Website</a></li>
         </ul>
-        : ''
         }
       </div>
     )

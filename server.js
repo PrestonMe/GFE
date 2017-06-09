@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000
 const fs = require('fs')
 const baseTemplate = fs.readFileSync('./index.html')
 const template = _.template(baseTemplate)
-const App = require('./app/app').default
+const App = require('./app/components/app').default
 
 const app = express()
 

@@ -19,10 +19,18 @@ class RepList extends Component {
 
   render() {
     return (
-      <div>
+      <div className='reps-list'>
+        <p className='list-title'>List / <span>Representatives</span></p>
+        <div className='name-party'>
+          <p>Name</p>
+          <p>Party</p>
+        </div>
         <ul>
           {this.state.representatives[0] && this.state.representatives.map(politician =>
-             <li onClick={() => this.selectRep(politician)}>{politician.name} {politician.party[0]}</li>
+             <li className='name-party list-names' onClick={() => this.selectRep(politician)}>
+               <p>{politician.name}</p>
+               <p>{politician.party[0]}</p>
+             </li>
           )}
         </ul>
       </div>
